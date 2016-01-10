@@ -191,7 +191,7 @@ function ipsec_topology()
 	echo ""
 	echo "For all Topologies listed below, the following applies"
 	echo "192.168.X.X will be the outside subnet with clear text"
-	echo "172.16.X.X will be the inside subnet with encrypted traffic"
+	echo -e "172.16.X.X will be the inside subnet with encrypted traffic\n"
 	sleep 1
 	echo "1.) Requires 3 subnets"
 	echo " _______                 ______"
