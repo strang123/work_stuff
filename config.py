@@ -5,17 +5,11 @@ HOST_HOST = 3
 ROAD_WAR = 2
 FOUR_TUNNEL = 1
 KERNEL_IPSEC = 0
-STRONG_IPSEC = 3
+STRONG_IPSEC = 1
 ipsec_type = NOT_SET_YET
 tunnel_type = NOT_SET_YET
 
 
-def run():
-	if ipsec_type = 0:
-		print('kernel')
-	if ipsec_type = 1:
-		print('strong')
-	return
 #A function that creates the config files for kernel ipsec
 def kernel_ipsec():
 	print('Kernel ipsec files are being generated')
@@ -28,18 +22,30 @@ def strong_ipsec():
 
 def init():
 	if sys.argv[1] == '0':
+		global ipsec_type
 		ipsec_type = KERNEL_IPSEC		
 	if sys.argv[1] == '1':
+		global ipsec_type
 		ipsec_type = STRONG_IPSEC
 	
 	if sys.argv[2] == '1':
+		global tunnel_type
 		tunnel_type = FOUR_TUNNEL
 	if sys.argv[2] == '2':
+		global tunnel_type
 		tunnel_type = ROAD_WAR
 	if sys.argv[2] == '3':
+		global tunnel_type
 		tunnel_type = HOST_HOST
 	return
 
+def run():
+	print(ipsec_type)
+	if ipsec_type == 0:
+		print('kernel')
+	if ipsec_type == 1:
+		print('strong')
+	return
 
 def kernel_config_file():
 	config_file=open('ipsec.setkey', 'w+')
@@ -160,6 +166,7 @@ def kernel_config_file():
 		
 		print >>config_file,''	
 	return
+
 
 init();
 run();
