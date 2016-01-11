@@ -6,14 +6,28 @@ ROAD_WAR = 2
 FOUR_TUNNEL = 1
 KERNEL_IPSEC = 0
 STRONG_IPSEC = 1
+ipsec_type=NOT_SET_YET
+tunnel_type=NOT_SET_YET
 
 #A function that creates the config files for kernel ipsec
 def kernel_ipsec():
+	if tunnel_type == FOUR_TUNNEL:
+		kernel_four_config()
+	if tunnel_type == ROAD_WAR:
+		kernel_road_config()
+	if tunnel_type == HOST_HOST:
+		kernel_host_config()
 	print('Kernel ipsec files are being generated')
 	return
 
 #A functio nthat create the config files for strongswan
 def strong_ipsec():
+	if tunnel_type == FOUR_TUNNEL:
+		strong_four_config()
+	if tunnel_type == ROAD_WAR:
+		strong_road_config()
+	if tunnel_type == HOST_HOST:
+		strong_host_config()
 	print('Strongswan config files are being generated')
 	return
 
@@ -34,14 +48,14 @@ def init():
 	return
 
 def run():
-	print(ipsec_type)
-	if ipsec_type == 0:
-		print('kernel')
-	if ipsec_type == 1:
-		print('strong')
+	if ipsec_type == KERNEL_IPSEC:
+		kernel_ipsec()
+	if ipsec_type == STRONG_IPSEC:
+		strong_ipsec()
 	return
 
-def kernel_config_file():
+def kernel_four_config():
+	print("kernel four")
 	config_file=open('ipsec.setkey', 'w+')
 	print >>config_file, 'flush;'
 	print >>config_file, 'spdflush;'
@@ -159,6 +173,23 @@ def kernel_config_file():
 		'.1/require;'
 		
 		print >>config_file,''	
+	return
+
+def kernel_road_config():
+	print("road")
+	return
+def kernel_host_config():
+	print("host")
+	return
+
+def strong_four_config():
+	print("strong four")
+	return
+def strong_road_config():
+	print("strong road")
+	return
+def strong_host_config():
+	print("strong host")
 	return
 
 
