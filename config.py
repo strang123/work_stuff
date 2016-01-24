@@ -1,5 +1,5 @@
 import sys
-
+#g
 NOT_SET_YET = 777
 HOST_HOST = 3
 ROAD_WAR = 2
